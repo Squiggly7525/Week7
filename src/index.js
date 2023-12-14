@@ -33,6 +33,19 @@ function search(event) {
     });
 }
 
+// Function to set default city to Tehran and trigger search
+function setDefaultCityAndSearch() {
+  let defaultCity = "Tehran"; // Set default city to Tehran
+  let searchInputElement = document.querySelector("#search-input");
+  searchInputElement.value = defaultCity; // Set the input value to default city
+
+  // Trigger search function
+  search(new Event("submit"));
+}
+
+// Call the function to set default city and trigger search on page load
+window.addEventListener("load", setDefaultCityAndSearch);
+
 function formatDate(date) {
   let minutes = date.getMinutes();
   let hours = date.getHours();
@@ -67,5 +80,3 @@ let currentDateELement = document.querySelector("#current-date");
 let currentDate = new Date();
 
 currentDateELement.innerHTML = formatDate(currentDate);
-
-search("Tehran");
