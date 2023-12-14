@@ -15,7 +15,9 @@ function search(event) {
       let temperatureElement = document.querySelector("#temperature");
       temperatureElement.innerHTML = `${temperature}`;
 
-      let condition = document.querySelector("#condition");
+      let condition = response.data.condition.description;
+      let conditionElement = document.querySelector("#condition");
+      conditionElement.innerHTML = `${condition}`;
 
       let humidity = response.data.temperature.humidity;
       let humidityElement = document.querySelector("#humidity");
