@@ -23,7 +23,9 @@ function search(event) {
       let humidityElement = document.querySelector("#humidity");
       humidityElement.innerHTML = `${humidity}`;
 
-      let wind = document.querySelector("#wind");
+      let wind = response.data.wind.speed;
+      let windElement = document.querySelector("#wind");
+      windElement.innerHTML = `${wind}`;
     })
 
     .catch(function (error) {
