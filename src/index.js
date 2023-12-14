@@ -26,6 +26,9 @@ function search(event) {
       let wind = response.data.wind.speed;
       let windElement = document.querySelector("#wind");
       windElement.innerHTML = `${wind}`;
+
+      let iconElement = document.querySelector("#icon");
+      iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
     })
 
     .catch(function (error) {
