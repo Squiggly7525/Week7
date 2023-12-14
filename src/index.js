@@ -14,6 +14,14 @@ function search(event) {
       let temperature = Math.round(response.data.temperature.current);
       let temperatureElement = document.querySelector("#temperature");
       temperatureElement.innerHTML = `${temperature}`;
+
+      let condition = document.querySelector("#condition");
+
+      let humidity = response.data.temperature.humidity;
+      let humidityElement = document.querySelector("#humidity");
+      humidityElement.innerHTML = `${humidity}`;
+
+      let wind = document.querySelector("#wind");
     })
 
     .catch(function (error) {
