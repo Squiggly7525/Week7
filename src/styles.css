@@ -72,6 +72,12 @@ main {
   color: #f65282;
 }
 
+.weather-forecast {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
 .weather-app-icon {
   width: 88px;
   height: 88px;
