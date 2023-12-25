@@ -83,34 +83,52 @@ let currentDateELement = document.querySelector("#current-date");
 let currentDate = new Date();
 
 currentDateELement.innerHTML = formatDate(currentDate);
-
 function displayForecast() {
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
   let forecastHtml = "";
 
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `
+  response.data.daily.forEach(function (day) {
+    forecastHtml += `
       <div class="weather-forecast-day">
-        <div class="weather-forecast-date">${day}</div>
-        <div class="weather-forecast-icon">🌤️</div>
+        <div class="weather-forecast-date">Thu</div>
+        <div class="weather-forecast-icon">🌤</div>
         <div class="weather-forecast-temperatures">
           <div class="weather-forecast-temperature">
-            <strong>15º</strong>
+            <strong> ${day.temperature.maximum}º </strong>
           </div>
           <div class="weather-forecast-temperature">9º</div>
         </div>
-      </div>
-    `;
+      </div>`;
   });
 
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
 }
 
+function fetchWeatherData(city) {
+  // Use fetch to make a call to the weather API
+  // Replace YOUR_API_KEY with your actual API key
+
+  let apiKey = "bd5889t8b40c8731299784o36f4cab6c";
+
+  fetch(
+    `https://api.shecodes.io/weather/v1/forecast?query={searchInputElement.value}&key={apiKey}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      // Process the data and display information
+      displayForecast();
+    })
+    .catch((error) => {
+      console.error("Error fetching weather data:", error);
+    });
+}
+
 let searchFormElement = document.querySelector("#search-form");
-searchFormElement.addEventListener("submit", search);
+searchFormElement.addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent the default form submission
+  let searchInput = document.querySelector("#search-input");
+  fetchWeatherData(searchInput.value);
+});
 
 search("");
 displayForecast();
